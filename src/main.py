@@ -1,9 +1,8 @@
-from main.objects.player import Player
+from main.services.game import Game
 
-player = Player(4)
-player.play((0,0))
-player.play((0,1))
-player.play((0,2))
-player.play((1,3))
-print(player.squares)
-print(player.win())
+game = Game(5)
+
+game.play((1,2))
+game.play((2,2))
+
+game.display()
