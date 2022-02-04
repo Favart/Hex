@@ -30,3 +30,5 @@ class Game():
         elif self.second_player.win():
             print("Le joueur 2 a gagné")
             return 2
+        else:
+            return 0
