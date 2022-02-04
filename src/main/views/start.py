@@ -1,5 +1,5 @@
 from PyInquirer import Separator, prompt
-from views.abstract import AbstractView
+from main.views.abstract import AbstractView
 
 class StartView(AbstractView):
 
@@ -20,5 +20,5 @@ class StartView(AbstractView):
     def make_choice(self):
         reponse = prompt(self.questions)
         if reponse['choix'] == '. Entrer !':
-            from views.welcome import WelcomeView
+            from main.views.welcome import WelcomeView
             return WelcomeView()

@@ -1,8 +1,15 @@
-from main.services.game import Game
+from main.views.start import StartView
 
-game = Game(5)
+# Point d'entrée l'application
 
-game.play((1,2))
-game.play((2,2))
+if __name__ == '__main__':
 
-game.display()
+    current_vue = StartView()
+    while current_vue:
+        with open('assets/banner.txt', 'r', encoding="utf-8") as asset:
+            print(asset.read())
+        current_vue.display_info()
+        current_vue = current_vue.make_choice()
+
+    with open('assets/over.txt', 'r', encoding="utf-8") as asset:
+        print(asset.read())
