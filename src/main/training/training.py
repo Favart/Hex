@@ -38,11 +38,12 @@ class Q_learning():
                 next_state = str(self.game.state())
                 reward = 10*self.game.win()
                 
+                old_value = self.Q_table[state][action]
+                
                 if reward == 0:
                     template = get_template(self.game.squares.get_last())
                     self.Q_table[next_state] = self.Q_table.setdefault(next_state, template)
                     
-                    old_value = self.Q_table[state][action]
                     best_next = max(self.Q_table[next_state], key=self.Q_table[next_state].get)
                     next_max = self.Q_table[next_state][best_next]
                     
@@ -52,7 +53,7 @@ class Q_learning():
                     state = next_state
                     
                 else:
-                    self.Q_table[state][action] = new_value
+                    self.Q_table[state][action] = (1-self.alpha)*old_value+self.alpha*reward
                 
             print(" ----------------- \n -----------------")
                 
