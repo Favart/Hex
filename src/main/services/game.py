@@ -5,15 +5,15 @@ class Game():
     
     def __init__(self,n):
         self.squares = Squares(n)
-        self.first_player = Player(n)
-        self.second_player = Player(n)
+        self.first_player = Player(n,1)
+        self.second_player = Player(n,2)
         self.turn = 1
         
     def clear(self):
         n = self.squares.get_shape()
         self.squares = Squares(n)
-        self.first_player = Player(n)
-        self.second_player = Player(n)
+        self.first_player = Player(n,1)
+        self.second_player = Player(n,2)
         self.turn = 1
         
     def state(self):
@@ -36,16 +36,16 @@ class Game():
         if self.turn == 1:
             self.first_player.play(square)
             self.turn += 1
-            print("Le joueur 1 a joué")
         else:
             self.second_player.play(square)
             self.turn -= 1
-            print("Le joueur 2 a joué")
             
     def win(self):
         if self.first_player.win():
+            print("Félicitations, le joueur 1 a gagné !")
             return 1
         elif self.second_player.win():
+            print("Félicitations, le joueur 2 a gagné !")
             return -1
         else:
             return 0
@@ -59,8 +59,4 @@ class Game():
             column = int(input("Sur quelle colonne voulez vous jouer ? :"))
             self.play((row,column))
             winner = self.win()
-        if winner == 1:
-            print("Félicitations, le joueur 1 a gagné !")
-        else:
-            print("Félicitations, le joueur 2 a gagné !")
         return winner

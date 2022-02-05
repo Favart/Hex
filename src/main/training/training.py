@@ -35,21 +35,26 @@ class Q_learning():
                     action = max(self.Q_table[state], key=self.Q_table[state].get)
                     
                 self.game.play(action)
-                self.game.display_board()
                 next_state = str(self.game.state())
-                reward = self.game.win()
+                reward = 10*self.game.win()
                 
-                template = get_template(self.game.squares.get_last())
-                self.Q_table[next_state] = self.Q_table.setdefault(next_state, template)
+                if reward == 0:
+                    template = get_template(self.game.squares.get_last())
+                    self.Q_table[next_state] = self.Q_table.setdefault(next_state, template)
+                    
+                    old_value = self.Q_table[state][action]
+                    best_next = max(self.Q_table[next_state], key=self.Q_table[next_state].get)
+                    next_max = self.Q_table[next_state][best_next]
+                    
+                    new_value = (1-self.alpha)*old_value+self.alpha*(reward-self.gamma*next_max)
+                    self.Q_table[state][action] = new_value
                 
-                old_value = self.Q_table[state][action]
-                best_next = max(self.Q_table[next_state], key=self.Q_table[next_state].get)
-                next_max = self.Q_table[next_state][best_next]
+                    state = next_state
+                    
+                else:
+                    self.Q_table[state][action] = new_value
                 
-                new_value = (1-self.alpha)*old_value+self.alpha*(reward-self.gamma*next_max)
-                self.Q_table[state][action] = new_value
-                
-                state = next_state
+            print(" ----------------- \n -----------------")
                 
             if i % 10 == 0:
                 print(f"Episode: {i}")
