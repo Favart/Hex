@@ -1,3 +1,5 @@
+from math import sqrt
+
 class Squares():
     
     def __init__(self,n):
@@ -10,6 +12,9 @@ class Squares():
     def pull(self,square):
         self.squares.remove(square)
         self.pulled.append(square)
+        
+    def get_shape(self):
+        return(int(sqrt(len(self.squares)+len(self.pulled))))
 
     def get_last(self):
         return self.squares

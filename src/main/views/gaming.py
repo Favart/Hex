@@ -19,7 +19,7 @@ class GamingView(AbstractView):
         print("La partie va commencer :)")
 
     def make_choice(self):
-        AbstractView.session.game.start_game()
+        AbstractView.session.game.start_game_pvp()
         reponse = prompt(self.questions)
         if reponse['choix'] == '1. Oui :D':
             from main.views.welcome import WelcomeView

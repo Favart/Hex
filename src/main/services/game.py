@@ -9,6 +9,19 @@ class Game():
         self.second_player = Player(n)
         self.turn = 1
         
+    def clear(self):
+        n = self.squares.get_shape()
+        self.squares = Squares(n)
+        self.first_player = Player(n)
+        self.second_player = Player(n)
+        self.turn = 1
+        
+    def state(self):
+        if self.turn == 1:
+            return(self.first_player.squares+2*self.second_player.squares)
+        else:
+            return((self.second_player.squares+2*self.first_player.squares).transpose())
+        
     def display_board(self):
         print(self.first_player.squares + 2*self.second_player.squares)
         
@@ -33,11 +46,11 @@ class Game():
         if self.first_player.win():
             return 1
         elif self.second_player.win():
-            return 2
+            return -1
         else:
             return 0
         
-    def start_game(self):
+    def start_game_pvp(self):
         winner = self.win()
         while winner == 0:
             self.display_board()
