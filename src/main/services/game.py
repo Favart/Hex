@@ -1,5 +1,6 @@
 from main.objects.squares import Squares
 from main.objects.player import Player
+from main.tools.tools_pygame import draw_blue, draw_red
 
 class Game():
     
@@ -20,7 +21,7 @@ class Game():
         return(self.first_player.squares+2*self.second_player.squares)
         
     def display_board(self):
-        print(self.first_player.squares + 2*self.second_player.squares)
+        print(self.first_player.squares+2*self.second_player.squares)
         
     def display_turn(self):
         if self.turn == 1:
@@ -39,10 +40,8 @@ class Game():
             
     def win(self):
         if self.first_player.win():
-            print("Félicitations, le joueur 1 a gagné !")
             return 1
         elif self.second_player.win():
-            print("Félicitations, le joueur 2 a gagné !")
             return -1
         else:
             return 0

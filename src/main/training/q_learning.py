@@ -6,7 +6,7 @@ from main.services.game import Game
 
 class Q_learning():
     
-    def __init__(self,n,alpha=0.1,gamma=1,epsilon=0.7,Q=None):
+    def __init__(self,n,alpha=0.1,gamma=1,epsilon=0.8,Q=None):
         # Q_table initialisation
         if Q:
             self.Q_table = Q
@@ -84,13 +84,12 @@ class Q_learning():
                 
                 else:
                     self.Q_table[state][action] = (1-self.alpha)*old_value+self.alpha*reward
-                
-            print(" ----------------- \n -----------------")
             
             self.all_epochs.append(i)
             self.all_penalties.append(((reward/10)+1)/2)
             
             if i % 10 == 0:
+                print(" --------------- \n ---------------")
                 print(f"Episode: {i}")
                 
         print("Training finished.\n")
