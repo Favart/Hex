@@ -4,10 +4,10 @@ import json
 
 import matplotlib.pyplot as plt
 
-q_learning = Q_learning(n=5)
+q_learning = Q_learning(n=3)
 q_learning.start(epochs=100000)
-q_learning = Q_learning(5,epsilon=0.1,Q=q_learning.Q_table)
-q_learning.start(10000)
+#q_learning = Q_learning(5,epsilon=0.2,Q=q_learning.Q_table)
+#q_learning.start(50000)
 
 wins, losts = q_learning.test(1000)
 print("Nombre de victoires: ",wins)

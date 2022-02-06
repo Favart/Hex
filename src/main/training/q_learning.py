@@ -23,7 +23,7 @@ class Q_learning():
         self.game = Game(n)
         
     def start(self,epochs):
-        for i in range(epochs):
+        for i in range(1,epochs+1):
             self.game.clear()
             state = str(self.game.state())
 
@@ -88,8 +88,8 @@ class Q_learning():
             self.all_epochs.append(i)
             self.all_penalties.append(((reward/10)+1)/2)
             
-            if i % 10 == 0:
-                print(" --------------- \n ---------------")
+            if i % 10000 == 0:
+                print(" ---------------")
                 print(f"Episode: {i}")
                 
         print("Training finished.\n")
