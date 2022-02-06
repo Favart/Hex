@@ -6,7 +6,7 @@ from main.services.game import Game
 
 class Q_learning():
     
-    def __init__(self,n,alpha=0.1,gamma=1,epsilon=0.2,Q=None):
+    def __init__(self,n,alpha=0.1,gamma=1,epsilon=0.7,Q=None):
         # Q_table initialisation
         if Q:
             self.Q_table = Q
@@ -98,3 +98,24 @@ class Q_learning():
     def display(self):
         plt.plot(self.all_epochs,self.all_penalties)
         plt.show
+        
+    def test(self,epochs):
+        wins = 0
+        losts = 0
+        for i in range(epochs):
+            self.game.clear()
+            while self.game.win() == 0:
+                state = str(self.game.state())
+                if state in self.Q_table:
+                    action = max(self.Q_table[state], key=self.Q_table[state].get)
+                else:
+                    action = random.choice(self.game.squares.get_last())
+                self.game.play(action)
+                if self.game.win() == 0:
+                    action = random.choice(self.game.squares.get_last())
+                    self.game.play(action)
+                if self.game.win() == 1:
+                    wins += 1
+                elif self.game.win() == -1:
+                    losts += 1
+        return wins,losts

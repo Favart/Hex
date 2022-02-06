@@ -1,4 +1,5 @@
 import numpy as np
+import random
 
 def initialise_Q_table(n):
     Q_table = {}
