@@ -19,15 +19,13 @@ class Player():
         self.squares[row,column] = 1
 
     def win(self):
+        squares = self.squares.copy()
         if self.turn == 1:
-            squares = self.squares.transpose()
-        else:
-            squares = self.squares
-        
+            squares = squares.transpose()
         winner = False
         current = transform(squares[0])
         for pos in current:
-            if explore(squares.copy(), (0,pos)):
+            if explore(squares, (0,pos)):
                 winner = True
         return winner
     

@@ -17,10 +17,7 @@ class Game():
         self.turn = 1
         
     def state(self):
-        if self.turn == 1:
-            return(self.first_player.squares+2*self.second_player.squares)
-        else:
-            return((self.second_player.squares+2*self.first_player.squares).transpose())
+        return(self.first_player.squares+2*self.second_player.squares)
         
     def display_board(self):
         print(self.first_player.squares + 2*self.second_player.squares)

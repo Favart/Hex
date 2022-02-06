@@ -1,7 +1,12 @@
-from main.training.training import Q_learning
+from main.training.q_learning import Q_learning
 import pprint
 
-q_learning = Q_learning(5)
+import matplotlib.pyplot as plt
+
+q_learning = Q_learning(3)
 q_learning.start(10000)
+q_learning = Q_learning(3,epsilon=0.5,Q=q_learning.Q_table)
+q_learning.start(1000)
 table = q_learning.Q_table
-pprint.pprint({ state: table[state] for state in table if '[1. 1. 1. 1. 1.]' in state })
+pprint.pprint(table)
+print(sum(q_learning.all_penalties[500:])/len(q_learning.all_penalties[500:]))
