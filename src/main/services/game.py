@@ -1,6 +1,5 @@
 from main.objects.squares import Squares
 from main.objects.player import Player
-from main.tools.tools_pygame import draw_blue, draw_red
 
 class Game():
     
